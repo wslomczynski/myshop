@@ -1,0 +1,23 @@
+
+.button-center{
+  text-align: center;
+}
+
+.row > div{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+
+
+
+.product-name{
+  display: block;
+  text-align: center;
+}
+
+
+#latest-products{
+  text-align: center;
+}
