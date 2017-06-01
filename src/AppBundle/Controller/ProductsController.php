@@ -23,47 +23,64 @@ class ProductsController extends Controller
    */
   public function index(Request $request){
 
+
+    $noMoreProducts = false;
+
     $products_per_page = 8;
 
-    $repository = $this->getDoctrine()->getRepository('AppBundle:Product');     // getting acces to product table
-    $products = $repository->findAll();                                         // select * from product;
+
+    $latest_post_id = 1;
+
+
+    $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
+    $search_word = $request->query->get('search_word');
 
 
 
-    if($request->isXmlHttpRequest()){                                           // if request == ajax
 
-        //$request = $this->container->get('request');
+    $em = $this->getDoctrine()->getManager();
+    $conn = $em->getConnection();
+    //if($search_word){
+    //  $products = $repository->findByName($search_word);
+    //}
+    $sql = "SELECT * FROM product WHERE id BETWEEN ? AND ?";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindValue(1, $latest_post_id);
+    $stmt->bindValue(2, $products_per_page);
+    $stmt->execute();
+    $products = $stmt->fetchAll();
+
+
+
+
+    if($request->isXmlHttpRequest()){
+
         $latest_post_id = $request->get('latest_post_id');                      // getting highest data-post-id atrribute from product
 
         $latest_post_id = (int)$latest_post_id;                                 // convert latest_post_id form string to int
-        $latest_post_id++;                                                      // incrementing to target next "wave" of products
+        $latest_post_id++;
 
-        $next_products = [];
-
-        $noMoreProducts = false;
-
-      for($i=$latest_post_id ; $i< $latest_post_id + $products_per_page ; $i++){ // creating new array and pushing products to array from
-                                                                                // latest_post_id to products per page
-          if($i >= count($products)){
-            $noMoreProducts = true;
-            break;
-          }
-            array_push($next_products,$products[$i]);
-          }
+        $query_helper = $products_per_page - 1;
 
 
 
-        $html =  $this->renderView('products/next.html.twig',['next_products' => $next_products, 'latest_post_id' => $latest_post_id]); // rendering $html from twig template
 
-        return new Response($html);
-
-
-    }
-
+        $stmt->bindValue(1, $latest_post_id);
+        $stmt->bindValue(2, $latest_post_id + $query_helper);
+        $stmt->execute();
+        $products = $stmt->fetchAll();
 
 
-    $products = array_slice($products, 0, $products_per_page);
+        $html =  $this->renderView('products/next.html.twig',['next_products' => $products, 'latest_post_id' => $latest_post_id]); // rendering $html from twig template
 
+        //return new Response($html);
+
+        $items = array('html' => $html, 'noMoreProducts' => $noMoreProducts);
+        return new JsonResponse($items);
+        //return Response::create($html, 200,['noMoreProducts' => $noMoreProducts]);
+
+      }
 
     return $this->render('products/index.html.twig',['products' => $products]);
   }
@@ -75,7 +92,7 @@ class ProductsController extends Controller
 
 
      $product = new Product();
-     $product->setName("macbookpro");
+     $product->setName("name2");
      $product->setPrice(22);
      $product->setDescription("desc");
 
@@ -88,5 +105,7 @@ class ProductsController extends Controller
      return new Response("added new product with id " . $product->getId());
 
     }
+
+
 
 }
