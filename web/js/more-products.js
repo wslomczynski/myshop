@@ -8,10 +8,9 @@ $(document).ready(function() {
       url: '',
       type: 'POST',
       data: {latest_post_id: latest_post_id },
-      success: function(products){
-        $('.row').append(products);
-
-        console.log(noMoreProducts);
+      success: function(data){
+        $('.row').append(data.html);
+        
 
 
       }
