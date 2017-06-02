@@ -23,66 +23,48 @@ class ProductsController extends Controller
    */
   public function index(Request $request){
 
-
     $noMoreProducts = false;
 
     $products_per_page = 8;
-
-
-    $latest_post_id = 1;
-
 
     $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
     $search_word = $request->query->get('search_word');
 
 
-
-
-    $em = $this->getDoctrine()->getManager();
-    $conn = $em->getConnection();
-    //if($search_word){
-    //  $products = $repository->findByName($search_word);
-    //}
-    $sql = "SELECT * FROM product WHERE id BETWEEN ? AND ?";
-    $stmt = $conn->prepare($sql);
-
-    $stmt->bindValue(1, $latest_post_id);
-    $stmt->bindValue(2, $products_per_page);
-    $stmt->execute();
-    $products = $stmt->fetchAll();
+    if($search_word){
+      $products = $repository->findByName($search_word);
+    } else {
+      $products = $repository->findAll();
+    }
 
 
 
+
+    $firstProducts = array_slice($products,0,$products_per_page);
 
     if($request->isXmlHttpRequest()){
 
-        $latest_post_id = $request->get('latest_post_id');                      // getting highest data-post-id atrribute from product
+      $latest_post_id = $request->get('latest_post_id');                      // getting highest data-post-id atrribute from products
+      $latest_post_id = (int)$latest_post_id;                                 // convert latest_post_id form string to int
+      $latest_post_id++;
 
-        $latest_post_id = (int)$latest_post_id;                                 // convert latest_post_id form string to int
-        $latest_post_id++;
-
-        $query_helper = $products_per_page - 1;
-
+      $next_products = array_slice($products,$latest_post_id,$products_per_page);
 
 
 
-        $stmt->bindValue(1, $latest_post_id);
-        $stmt->bindValue(2, $latest_post_id + $query_helper);
-        $stmt->execute();
-        $products = $stmt->fetchAll();
-
-
-        $html =  $this->renderView('products/next.html.twig',['next_products' => $products, 'latest_post_id' => $latest_post_id]); // rendering $html from twig template
+      $html =  $this->renderView('products/next.html.twig',['next_products' => $next_products, 'latest_post_id' => $latest_post_id]); // rendering $html from twig template
 
         //return new Response($html);
 
-        $items = array('html' => $html, 'noMoreProducts' => $noMoreProducts);
-        return new JsonResponse($items);
+      $items = array('html' => $html, 'noMoreProducts' => $noMoreProducts);
+      return new JsonResponse($items);
         //return Response::create($html, 200,['noMoreProducts' => $noMoreProducts]);
 
       }
 
-    return $this->render('products/index.html.twig',['products' => $products]);
+
+
+    return $this->render('products/index.html.twig',['products' => $firstProducts]);
   }
 
   /**
@@ -92,7 +74,7 @@ class ProductsController extends Controller
 
 
      $product = new Product();
-     $product->setName("name2");
+     $product->setName("name1");
      $product->setPrice(22);
      $product->setDescription("desc");
 
