@@ -10,7 +10,8 @@ $(document).ready(function() {
       data: {latest_post_id: latest_post_id },
       success: function(data){
         $('.row').append(data.html);
-        
+        console.log(data.html);
+
 
 
       }

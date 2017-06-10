@@ -7,47 +7,68 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Product
  *
- * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
+ * @ORM\Table(name="product", indexes={@ORM\Index(name="category", columns={"category"}), @ORM\Index(name="image", columns={"image"})})
+ * @ORM\Entity
  */
 class Product
 {
-  /**
-* @ORM\Column(type="integer")
-* @ORM\Id
-* @ORM\GeneratedValue(strategy="AUTO")
-*/
-private $id;
-
-/**
-* @ORM\Column(type="string", length=100)
-*/
-private $name;
-
-/**
-* @ORM\Column(type="decimal", scale=2)
-*/
-private $price;
-
-/**
-* @ORM\Column(type="text")
-*/
-private $description;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     */
+    private $name;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return integer
+     * @ORM\Column(name="price", type="decimal", precision=10, scale=2, nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=false)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\ProductCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductCategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * })
+     */
+    private $category;
+
+    /**
+     * @var \AppBundle\Entity\ProductImage
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductImage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="image", referencedColumnName="id")
+     * })
+     */
+    private $image;
+
+
 
     /**
      * Set name
      *
      * @param string $name
+     *
      * @return Product
      */
     public function setName($name)
@@ -71,6 +92,7 @@ private $description;
      * Set price
      *
      * @param string $price
+     *
      * @return Product
      */
     public function setPrice($price)
@@ -94,6 +116,7 @@ private $description;
      * Set description
      *
      * @param string $description
+     *
      * @return Product
      */
     public function setDescription($description)
@@ -111,5 +134,63 @@ private $description;
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\ProductCategory $category
+     *
+     * @return Product
+     */
+    public function setCategory(\AppBundle\Entity\ProductCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\ProductCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \AppBundle\Entity\ProductImage $image
+     *
+     * @return Product
+     */
+    public function setImage(\AppBundle\Entity\ProductImage $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \AppBundle\Entity\ProductImage
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

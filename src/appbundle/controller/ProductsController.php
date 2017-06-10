@@ -24,8 +24,10 @@ class ProductsController extends Controller
   public function index(Request $request){
 
     $noMoreProducts = false;
+    $category = NULL;
 
     $products_per_page = 8;
+
 
     $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
     $search_word = $request->query->get('search_word');
@@ -36,6 +38,7 @@ class ProductsController extends Controller
     } else {
       $products = $repository->findAll();
     }
+
 
 
 
@@ -74,9 +77,10 @@ class ProductsController extends Controller
 
 
      $product = new Product();
-     $product->setName("name1");
+     $product->setName("name3");
      $product->setPrice(22);
      $product->setDescription("desc");
+     $product->setCategory(new ProductCategory());
 
      $em = $this->getDoctrine()->getManager();
 

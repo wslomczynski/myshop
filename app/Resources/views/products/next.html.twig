@@ -1,0 +1,13 @@
+
+{% set i = latest_post_id %}
+
+{% for product in next_products %}
+
+<div data-post-id="{{i}}" class="col-md-3">
+  <img src="{{ asset("img/macbook 179x91.jpg") }}" alt="">
+  <span class="product-name"> {{ product.name }} </span>
+</div>
+
+{% set i = i + 1 %}
+
+{% endfor %}

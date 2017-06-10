@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProductImage
+ *
+ * @ORM\Table(name="product_image")
+ * @ORM\Entity
+ */
+class ProductImage
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_name", type="string", length=255, nullable=false)
+     */
+    private $imageName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="image_size", type="integer", nullable=false)
+     */
+    private $imageSize;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    private $updatedAt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+
