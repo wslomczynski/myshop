@@ -21,7 +21,7 @@ class ProductsController extends Controller
   /**
    * @Route("/products")
    */
-  public function index(Request $request){
+  public function indexAction(Request $request){
 
     $noMoreProducts = false;
     $category = NULL;
