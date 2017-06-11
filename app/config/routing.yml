@@ -2,6 +2,19 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-blog_list:
+home_page:
     path:     /
     defaults: { _controller: AppBundle:Home:index }
+
+products_page:
+  path: /products
+  defaults: { _controller: AppBundle:Products:index }
+
+
+products_add:
+  path: /products/add
+  defaults: { _controller: AppBundle:Products:add }
+
+admin_page:
+  path: /admin
+  defaults: { _controller: AppBundle:Admin:index }
