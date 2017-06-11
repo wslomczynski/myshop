@@ -27,7 +27,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $params = $request->request->all();
-        
+
 
         $file = $request->files->get('file');
 
@@ -36,8 +36,6 @@ class AdminController extends Controller
 
          $img = new ProductImage();
          $img->setImageName($file->getClientOriginalName());
-         $img->setImageSize($file->getClientSize());
-         $img->setUpdatedAt(new \DateTime("now"));
          $path_to_save = $this->get('kernel')->getRootDir() . '\..\web\uploadedImages';
          $filename = $file->getClientOriginalName();
          $file->move($path_to_save,$filename);

@@ -22,20 +22,6 @@ class ProductImage
     /**
      * @var integer
      *
-     * @ORM\Column(name="image_size", type="integer", nullable=false)
-     */
-    private $imageSize;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -66,54 +52,6 @@ class ProductImage
     public function getImageName()
     {
         return $this->imageName;
-    }
-
-    /**
-     * Set imageSize
-     *
-     * @param integer $imageSize
-     *
-     * @return ProductImage
-     */
-    public function setImageSize($imageSize)
-    {
-        $this->imageSize = $imageSize;
-
-        return $this;
-    }
-
-    /**
-     * Get imageSize
-     *
-     * @return integer
-     */
-    public function getImageSize()
-    {
-        return $this->imageSize;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return ProductImage
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

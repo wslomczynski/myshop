@@ -70,27 +70,6 @@ class ProductsController extends Controller
     return $this->render('products/index.html.twig',['products' => $firstProducts]);
   }
 
-  /**
-   * @Route("/products/add")
-   */
-   public function add(){
-
-
-     $product = new Product();
-     $product->setName("name3");
-     $product->setPrice(22);
-     $product->setDescription("desc");
-     $product->setCategory(new ProductCategory());
-
-     $em = $this->getDoctrine()->getManager();
-
-     $em->persist($product);
-
-     $em->flush();
-
-     return new Response("added new product with id " . $product->getId());
-
-    }
 
 
 
