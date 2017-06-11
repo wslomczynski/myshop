@@ -36,6 +36,8 @@ class AdminController extends Controller
 
          $img = new ProductImage();
          $img->setImageName($file->getClientOriginalName());
+         
+
          $path_to_save = $this->get('kernel')->getRootDir() . '\..\web\uploadedImages';
          $filename = $file->getClientOriginalName();
          $file->move($path_to_save,$filename);
