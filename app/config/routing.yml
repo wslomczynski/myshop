@@ -11,9 +11,6 @@ products_page:
   defaults: { _controller: AppBundle:Products:index }
 
 
-products_add:
-  path: /products/add
-  defaults: { _controller: AppBundle:Products:add }
 
 admin_page:
   path: /admin
