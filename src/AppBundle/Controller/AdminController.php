@@ -27,7 +27,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $params = $request->request->all();
-        var_dump($params);
+        
 
         $file = $request->files->get('file');
 
