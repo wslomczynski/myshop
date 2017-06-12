@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Product
  *
- * @ORM\Table(name="product", indexes={@ORM\Index(name="IDX_D34A04AD64C19C1", columns={"category"}), @ORM\Index(name="IDX_D34A04ADC53D045F", columns={"image"})})
+ * @ORM\Table(name="product", indexes={@ORM\Index(name="IDX_D34A04ADC53D045F", columns={"image"}), @ORM\Index(name="IDX_D34A04AD64C19C1", columns={"category"})})
  * @ORM\Entity
  */
 class Product
@@ -44,16 +44,6 @@ class Product
     private $id;
 
     /**
-     * @var \AppBundle\Entity\ProductCategory
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductCategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
-     * })
-     */
-    private $category;
-
-    /**
      * @var \AppBundle\Entity\ProductImage
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductImage")
@@ -62,6 +52,16 @@ class Product
      * })
      */
     private $image;
+
+    /**
+     * @var \AppBundle\Entity\ProductCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductCategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * })
+     */
+    private $category;
 
 
 
@@ -148,30 +148,6 @@ class Product
     }
 
     /**
-     * Set category
-     *
-     * @param \AppBundle\Entity\ProductCategory $category
-     *
-     * @return Product
-     */
-    public function setCategory(\AppBundle\Entity\ProductCategory $category = null)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \AppBundle\Entity\ProductCategory
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set image
      *
      * @param \AppBundle\Entity\ProductImage $image
@@ -193,5 +169,29 @@ class Product
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\ProductCategory $category
+     *
+     * @return Product
+     */
+    public function setCategory(\AppBundle\Entity\ProductCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\ProductCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

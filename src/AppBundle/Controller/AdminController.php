@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\FileBag;
 
 use AppBundle\Entity\ProductImage;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\ProductCategory;
 
 
 class AdminController extends Controller
@@ -36,22 +37,24 @@ class AdminController extends Controller
 
          $img = new ProductImage();
          $img->setImageName($file->getClientOriginalName());
-         
+         $em->persist($img);
+         $em->flush();
+
 
          $path_to_save = $this->get('kernel')->getRootDir() . '\..\web\uploadedImages';
          $filename = $file->getClientOriginalName();
          $file->move($path_to_save,$filename);
 
-         $params['category'] = $category_repository->find(intval($params['category']));
+         //$params['category'] = $category_repository->find(intval($params['category']));
+         //$category = new ProductCategory();
          $product = new Product();
          $product->setName($params['name']);
          $product->setPrice($params['price']);
          $product->setDescription($params['description']);
-         $product->setCategory($params['category']);
-         $product->setImage($img->getId());
+         $product->setCategory(new ProductCategory());
+         $product->setImage($img);
 
-         $em->persist($img);
-         $em->flush();
+
          $em->persist($product);
          $em->flush();
 
