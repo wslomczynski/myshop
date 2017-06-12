@@ -15,9 +15,9 @@ class ProductImage
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="text", nullable=false)
+     * @ORM\Column(name="name", type="text", nullable=false)
      */
-    private $imageName;
+    private $name;
 
     /**
      * @var integer
@@ -32,27 +32,27 @@ class ProductImage
 
 
     /**
-     * Set imageName
+     * Set name
      *
-     * @param string $imageName
+     * @param string $name
      *
      * @return ProductImage
      */
-    public function setImageName($imageName)
+    public function setName($name)
     {
-        $this->imageName = $imageName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get imageName
+     * Get name
      *
      * @return string
      */
-    public function getImageName()
+    public function getName()
     {
-        return $this->imageName;
+        return $this->name;
     }
 
     /**

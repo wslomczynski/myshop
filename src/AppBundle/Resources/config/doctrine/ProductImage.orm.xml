@@ -5,7 +5,7 @@
       <generator strategy="SEQUENCE"/>
       <sequence-generator sequence-name="product_image_id_seq" allocation-size="1" initial-value="1"/>
     </id>
-    <field name="imageName" type="text" column="image_name" nullable="false">
+    <field name="name" type="text" column="name" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

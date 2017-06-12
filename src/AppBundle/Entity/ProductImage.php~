@@ -15,9 +15,9 @@ class ProductImage
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="text", nullable=false)
+     * @ORM\Column(name="name", type="text", nullable=false)
      */
-    private $imageName;
+    private $name;
 
     /**
      * @var integer
