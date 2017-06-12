@@ -15,7 +15,7 @@ class ProductCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="name", type="text", nullable=false)
      */
     private $name;
 
@@ -24,7 +24,8 @@ class ProductCategory
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="product_category_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 

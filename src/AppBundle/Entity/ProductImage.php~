@@ -15,30 +15,17 @@ class ProductImage
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="image_name", type="text", nullable=false)
      */
     private $imageName;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="image_size", type="integer", nullable=false)
-     */
-    private $imageSize;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="product_image_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 

@@ -15,7 +15,7 @@ class ProductImage
     /**
      * @var string
      *
-     * @ORM\Column(name="image_name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="image_name", type="text", nullable=false)
      */
     private $imageName;
 
@@ -24,7 +24,8 @@ class ProductImage
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="product_image_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 

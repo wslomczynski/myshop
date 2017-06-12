@@ -2,18 +2,13 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="AppBundle\Entity\ProductImage" table="product_image">
     <id name="id" type="integer" column="id">
-      <generator strategy="IDENTITY"/>
+      <generator strategy="SEQUENCE"/>
+      <sequence-generator sequence-name="product_image_id_seq" allocation-size="1" initial-value="1"/>
     </id>
-    <field name="imageName" type="string" column="image_name" length="255" nullable="false">
+    <field name="imageName" type="text" column="image_name" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="imageSize" type="integer" column="image_size" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="updatedAt" type="datetime" column="updated_at" nullable="false"/>
   </entity>
 </doctrine-mapping>
