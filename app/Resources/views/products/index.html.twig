@@ -31,9 +31,10 @@
     {% for product in products %}
 
     <div data-post-id="{{i}}" class="col-md-3">
-      <img src="{{ asset("img/macbook 179x91.jpg") }}" alt="">
+      <img src="{{ asset("uploadedImages/" ~ product.image ~ '') }}" alt="">
       <span class="product-name"> {{ product.name }} </span>
-      <span class="product-category">{{product.category}}</span>
+      <span class="product_category"> {{ product.category }} </span>
+
     </div>
 
     {% set i = i + 1 %}
