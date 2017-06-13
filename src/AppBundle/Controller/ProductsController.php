@@ -28,7 +28,7 @@ class ProductsController extends Controller
 
     $products_per_page = 8;
 
-    
+
 
     $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
     $repository_image = $this->getDoctrine()->getRepository('AppBundle:ProductImage');
@@ -75,7 +75,7 @@ class ProductsController extends Controller
       return $this->render('products/index.html.twig',['products' => $firstProducts]);
     }
 
-    return new Response("no products available");
+    return new Response("no products available, go to admin panel to add a product");
 
 
   }
