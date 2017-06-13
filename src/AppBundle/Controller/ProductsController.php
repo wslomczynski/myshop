@@ -24,12 +24,14 @@ class ProductsController extends Controller
   public function indexAction(Request $request){
 
     $noMoreProducts = false;
-    $category = NULL;
+    $category = 1;
 
     $products_per_page = 8;
 
 
     $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
+    $repository_image = $this->getDoctrine()->getRepository('AppBundle:ProductImage');
+    $repository_category = $this->getDoctrine()->getRepository('AppBundle:ProductCategory');
     $search_word = $request->query->get('search_word');
 
 
@@ -67,7 +69,14 @@ class ProductsController extends Controller
 
 
 
-    return $this->render('products/index.html.twig',['products' => $firstProducts]);
+
+    if($firstProducts){
+      return $this->render('products/index.html.twig',['products' => $firstProducts]);
+    }
+
+    return new Response("no products available");
+
+
   }
 
 
