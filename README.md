@@ -20,4 +20,5 @@ Technology stack:
     -jQuery and AJAX
     -HTML
     -CSS
+    -Bootstrap
     -Twig template engine
