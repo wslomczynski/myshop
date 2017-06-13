@@ -31,7 +31,7 @@
     {% for product in products %}
 
     <div data-post-id="{{i}}" class="col-md-3">
-      <img src="{{ asset("uploadedImages/" ~ product.image ~ '') }}" alt="">
+      <img src="{{ asset("uploadedImages/" ~ product.image)}}" alt="">
       <span class="product-name"> {{ product.name }} </span>
       <span class="product_category"> {{ product.category }} </span>
 

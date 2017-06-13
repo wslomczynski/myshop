@@ -28,6 +28,7 @@ class ProductsController extends Controller
 
     $products_per_page = 8;
 
+    
 
     $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
     $repository_image = $this->getDoctrine()->getRepository('AppBundle:ProductImage');

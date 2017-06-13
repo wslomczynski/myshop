@@ -22,6 +22,7 @@ class AdminController extends Controller
    */
    public function index(Request $request){
 
+        
         $product_repository = $this->getDoctrine()->getRepository('AppBundle:Product');
         $image_repository = $this->getDoctrine()->getRepository('AppBundle:ProductImage');
         $category_repository = $this->getDoctrine()->getRepository('AppBundle:ProductCategory');
