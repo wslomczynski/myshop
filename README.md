@@ -2,10 +2,10 @@
 
 ----STILL IN DEVELOPMENT PROCESS----
 
-https://shop-wslomczynski.herokuapp.com/ (unstable deployment)
+https://shop-wslomczynski.herokuapp.com/ (unstable deploy)
 
 About:
-  My app is an internet shop with the following features:
+My app is an internet shop with the following features:
 
     -Homepage which is a container for slider
     -Products page where all products are listed
