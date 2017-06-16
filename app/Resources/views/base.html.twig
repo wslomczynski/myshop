@@ -5,26 +5,23 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset("css/navbar.css") }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
 
-      <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">ShopApp</a>
-            </div>
-
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+      <div class="wrapper">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
                 <li><a href="products">Products</a></li>
                 <li><a href="admin">Admin</a></li>
                 <li><a href="#">About</a></li>
             </ul>
-          </div>
-      </nav>
 
+        </nav>
+      </div>
 
 
         {% block body %}{% endblock %}
