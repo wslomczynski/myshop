@@ -1,0 +1,51 @@
+
+.wrapper{
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav ul{
+  display: flex;
+  list-style-type: none;
+  background-color: #333;
+  text-align: center;
+
+}
+
+nav ul::before{
+  content: none;
+}
+
+nav li{
+  padding: 20px;
+  flex-grow: 1;
+
+}
+
+nav li:focus{
+  background-color: red;
+}
+
+nav li:hover{
+  background-color: #555;
+}
+
+nav a{
+  color: #fff;
+  font-weight: 700;
+}
+
+nav a:hover{
+   color: #FFF;
+}
+
+nav a:visited {
+    color: #FFF;
+}
+nav a:hover, nav a:visited, nav a:link, nav a:active
+{
+    text-decoration: none;
+}
+nav a:active{
+  color: red;
+}
