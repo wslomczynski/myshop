@@ -4,7 +4,7 @@
 {% for product in next_products %}
 
 <div data-post-id="{{i}}" class="col-md-3">
-  <img src="{{ asset("img/macbook 179x91.jpg") }}" alt="">
+  <img src="{{ asset("uploadedImages/" ~ product.image)}}" alt="">
   <span class="product-name"> {{ product.name }} </span>
 </div>
 
