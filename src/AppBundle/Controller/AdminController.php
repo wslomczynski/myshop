@@ -22,7 +22,7 @@ class AdminController extends Controller
    */
    public function index(Request $request){
 
-        
+
         $product_repository = $this->getDoctrine()->getRepository('AppBundle:Product');
         $image_repository = $this->getDoctrine()->getRepository('AppBundle:ProductImage');
         $category_repository = $this->getDoctrine()->getRepository('AppBundle:ProductCategory');
@@ -45,6 +45,33 @@ class AdminController extends Controller
          $path_to_save = $this->get('kernel')->getRootDir() . '\..\web\uploadedImages';
          $filename = $file->getClientOriginalName();
          $file->move($path_to_save,$filename);
+
+         //////////////////////// -------------- cutting photo ----------------------------------//////////////////////
+
+         $file = imagecreatefromjpeg($path_to_save . "\\" . $filename);
+
+
+         $x = imagesx($file);
+         $y = imagesy($file);
+
+         $tmp_x = 0;
+         $tmp_y = 0;
+
+         $final_x = 179;
+         $final_y = 91;
+
+
+         if($y<$x) $tmp_x = ceil(($x-$final_x*$y/$final_y)/2);
+         elseif($x<$y) $tmp_y = ceil(($y-$final_y*$x/$final_x)/2);
+
+         $resized_file = imagecreatetruecolor($final_x, $final_y);
+         imagecopyresampled($resized_file, $file, 0, 0, $tmp_x, $tmp_y, $final_x, $final_y, $x-2*$tmp_x, $y-2*$tmp_y);
+
+         imagejpeg($resized_file, $path_to_save . "\\" . $filename, 100);
+
+         //////////////////////// -------------- cutting photo -------------------------------////////////////////////////
+
+
 
          $params['category'] = $category_repository->find(intval($params['category']));
 
