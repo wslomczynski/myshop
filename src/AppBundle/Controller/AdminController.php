@@ -48,7 +48,7 @@ class AdminController extends Controller
 
          //////////////////////// -------------- cutting photo ----------------------------------//////////////////////
 
-         $file = imagecreatefromjpeg($path_to_save . "\\" . $filename);
+         $file = \imagecreatefromjpeg($path_to_save . "\\" . $filename);
 
 
          $x = imagesx($file);
@@ -64,10 +64,10 @@ class AdminController extends Controller
          if($y<$x) $tmp_x = ceil(($x-$final_x*$y/$final_y)/2);
          elseif($x<$y) $tmp_y = ceil(($y-$final_y*$x/$final_x)/2);
 
-         $resized_file = imagecreatetruecolor($final_x, $final_y);
-         imagecopyresampled($resized_file, $file, 0, 0, $tmp_x, $tmp_y, $final_x, $final_y, $x-2*$tmp_x, $y-2*$tmp_y);
+         $resized_file = \imagecreatetruecolor($final_x, $final_y);
+         \imagecopyresampled($resized_file, $file, 0, 0, $tmp_x, $tmp_y, $final_x, $final_y, $x-2*$tmp_x, $y-2*$tmp_y);
 
-         imagejpeg($resized_file, $path_to_save . "\\" . $filename, 100);
+         \imagejpeg($resized_file, $path_to_save . "\\" . $filename, 100);
 
          //////////////////////// -------------- cutting photo -------------------------------////////////////////////////
 
